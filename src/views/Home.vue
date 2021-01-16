@@ -38,32 +38,30 @@ export default {
       favList: []
     };
   },
-  created() {
-    this.refresh();
-  },
+  
   methods: {
-    refresh() {
-      axios
-        .get(`http://localhost:3000/myMovie`)
-        .then(movie_info_response => {
-          this.movieDetails = movie_info_response.data;
-          console.log("movieDetails", this.movieDetails);
-          this.movieList = movie_info_response.data;
-        })
-        .catch(error => {
-          console.log(error);
-        });
-    },
-    update(v) {
-      axios
-        .post("http://localhost:3000/myMovie", v)
-        .then(movie_save_response =>
-          console.log("movie_save_response", movie_save_response)
-        )
-        .catch(error => {
-          console.log(error);
-        });
-    },
+    // refresh() {
+    //   axios
+    //     .get(`http://localhost:3000/myMovie`)
+    //     .then(movie_info_response => {
+    //       this.movieDetails = movie_info_response.data;
+    //       console.log("movieDetails", this.movieDetails);
+    //       this.movieList = movie_info_response.data;
+    //     })
+    //     .catch(error => {
+    //       console.log(error);
+    //     });
+    // },
+    // update(v) {
+    //   axios
+    //     .post("http://localhost:3000/myMovie", v)
+    //     .then(movie_save_response =>
+    //       console.log("movie_save_response", movie_save_response)
+    //     )
+    //     .catch(error => {
+    //       console.log(error);
+    //     });
+    // },
     getMovieInfo() {
       axios
         .get(`http://www.omdbapi.com/?apikey=1feca478&t=${this.movieName}`)
@@ -74,7 +72,6 @@ export default {
             this.movieDetails = movie_info_response.data;
             console.log("movieDetails", this.movieDetails);
             this.movieList.push(movie_info_response.data);
-            this.update(this.movieDetails);
           }
         })
         .catch(error => {
@@ -90,10 +87,6 @@ export default {
           this.favList.push(res.data);
           console.log("addToFavorite", res);
           console.log("FavoriteList", this.favList);
-
-          // if (res.status === 500) {
-          //   // console.log("addToFavorite", res.status);
-          // }
         })
         .catch(error => {
           console.log(error);

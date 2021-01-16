@@ -8,6 +8,7 @@
       :key="index"
       :details="movie"
       @Favourite-event="addToFavorite"
+      @click="$router.push(`/details/${movie.imdbID}`)"
     />
   </div>
 </template>
