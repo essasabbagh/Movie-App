@@ -15,6 +15,7 @@
       v-for="(movie, index) in movieList"
       :key="index"
       :details="movie"
+      :favList="favList"
       @Add-To-Favourite-event="addToFavorite"
       @Remove-From-Favourite-event="removeFromFavorite"
       @click="$router.push(`/details/${movie.imdbID}`)"
@@ -40,28 +41,6 @@ export default {
   },
 
   methods: {
-    // refresh() {
-    //   axios
-    //     .get(`http://localhost:3000/myMovie`)
-    //     .then(movie_info_response => {
-    //       this.movieDetails = movie_info_response.data;
-    //       console.log("movieDetails", this.movieDetails);
-    //       this.movieList = movie_info_response.data;
-    //     })
-    //     .catch(error => {
-    //       console.log(error);
-    //     });
-    // },
-    // update(v) {
-    //   axios
-    //     .post("http://localhost:3000/myMovie", v)
-    //     .then(movie_save_response =>
-    //       console.log("movie_save_response", movie_save_response)
-    //     )
-    //     .catch(error => {
-    //       console.log(error);
-    //     });
-    // },
     getMovieInfo() {
       axios
         .get(`http://www.omdbapi.com/?apikey=1feca478&t=${this.movieName}`)
@@ -85,66 +64,23 @@ export default {
         .post("http://localhost:3000/myFav", item)
         .then(res => {
           this.favList.push(res.data);
-          console.log("addToFavorite", res);
           console.log("FavoriteList", this.favList);
         })
         .catch(error => {
           console.log(error);
         });
-
-      // const source = axios.CancelToken.source().token;
-      // const cancelToken = source.token;
-      // const req = axios.get("http://httpbin.org/get?answer=42", {
-      //   cancelToken,
-      // });
-
-      // let index = this.movieList.findIndex((i) => i.imdbID === item.imdbID);
-      // axios
-      //   .put(`http://localhost:3000/myMovie/${index + 1}`, {
-      //     isFav: true,
-      //     ...item,
-      //   })
-      //   .then((res) => {
-      //     console.log(res);
-      //     if (res.status > 500) {
-      //       console.log("addToFavoritemovie", res.status);
-      //       this.movieList[index].isFav = true;
-      //       this.refresh();
-      //     }
-      //   })
-      //   .catch((error) => {
-      //     console.log(error);
-      //   });
-      // console.log("add", item.isFav);
-      item.isFav = !item.isFav;
     },
     removeFromFavorite(item) {
-      let index = this.movieList.findIndex(i => i.imdbID === item.imdbID);
       axios
-        .delete(`http://localhost:3000/myFav/${index + 1}`)
-        .then(res => console.log(res))
+        .delete(`http://localhost:3000/myFav/${item.id}`)
+        .then(res => {
+          console.log(res);
+          this.favList = this.favList.filter(e => e.id !== item.id);
+          console.log("FavoriteList", this.favList);
+        })
         .catch(error => {
           console.log(error);
         });
-
-      // axios
-      //   .put(`http://localhost:3000/myMovie/${index + 1}`, {
-      //     isFav: false,
-      //     ...item,
-      //   })
-      //   .then((res) => {
-      //     console.log(res);
-      //     if (res.status > 500) {
-      //       console.log("addToFavoritemovie", res.status);
-      //       this.movieList[index].isFav = false;
-      //     }
-      //   })
-      //   .catch((error) => {
-      //     console.log(error);
-      //   });
-
-      // console.log("rempve", item.isFav);
-      item.isFav = !item.isFav;
     }
   }
 };

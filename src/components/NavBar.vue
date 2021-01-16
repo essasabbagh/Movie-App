@@ -1,16 +1,5 @@
 <template>
   <div>
-    <!-- <header>
-      <ul>
-        <li>
-          <a href="./index.html" class="active">Anasayfa</a>
-        </li>
-        <li>
-          <a href="./favorites.html">Favorilerim</a>
-        </li>
-      </ul>
-      <span> Movie App | kablosuzkedi </span>
-    </header> -->
     <nav class="navbar navbar-expand-lg navbar-light bg-dark">
       <div class="container-fluid">
         <a class="navbar-brand" href="#">Movie App</a>
@@ -44,10 +33,6 @@
     </nav>
   </div>
 </template>
-
-<script>
-export default {};
-</script>
 
 <style>
 span {

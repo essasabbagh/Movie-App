@@ -38,24 +38,24 @@ export default {
   props: ["details"],
   data() {
     return {
-      AllFavList: []
+      AllFavList: [],
     };
   },
   created() {
     axios
       .get(`http://localhost:3000/myFav`)
-      .then(fav_info_response => {
+      .then((fav_info_response) => {
         this.AllFavList = fav_info_response.data;
         console.log("movieDetails", this.AllFavList);
       })
-      .catch(error => {
+      .catch((error) => {
         console.log(error);
       });
   },
   computed: {
     isFav() {
-      return Boolean(this.AllFavList.find(i => i.id === this.details.id));
-    }
+      return Boolean(this.AllFavList.find((i) => i.id === this.details.id));
+    },
   },
   methods: {
     addToFav(id) {
@@ -63,8 +63,8 @@ export default {
     },
     removeFromFav(id) {
       this.$emit("Remove-From-Favourite-event", id);
-    }
-  }
+    },
+  },
 };
 </script>
 <style>
