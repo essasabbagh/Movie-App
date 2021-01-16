@@ -8,9 +8,9 @@
       v-model="movieName"
       @keyup.enter="getMovieInfo"
     />
-    <div class="spinner-border" role="status">
+    <!-- <div class="spinner-border" role="status">
       <span class="sr-only">Loading...</span>
-    </div>
+    </div> -->
     <Movies
       v-for="(movie, index) in movieList"
       :key="index"

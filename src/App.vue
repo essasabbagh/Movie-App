@@ -53,7 +53,7 @@ export default {
 }
 
 .moveUp-enter-active {
-  animation: fadeIn 1s ease-in;
+  animation: fadeIn 0.5s ease;
 }
 @keyframes fadeIn {
   0% {
@@ -67,7 +67,7 @@ export default {
   }
 }
 .moveUp-leave-active {
-  animation: moveUp 0.3s ease-in;
+  animation: moveUp 0.3s ease;
 }
 @keyframes moveUp {
   0% {
