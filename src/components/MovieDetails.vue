@@ -1,0 +1,103 @@
+<template>
+  <div class="poster">
+    <div class="card mb-3">
+      <div class="one mt-10">
+        <img
+          :src="`http://img.omdbapi.com/?apikey=1feca478&i=${info.imdbID}`"
+          class="card-img-top"
+          alt="..."
+        />
+        <div class="card-body">
+          <h4 class="card-title">
+            {{ info.Title }} <small class="text-muted">{{ info.Year }}</small>
+          </h4>
+          <p class="card-text">
+            <b>Plot: </b>
+            {{ info.Plot }}
+          </p>
+          <!-- <div class="action_container">
+            <button @click.stop="removeFromFav(details)" class="btnn">
+              <i class="isFavourite fa fa-heart"></i>
+            </button>
+
+            <button class="btnn" @click.stop="addToFav(details)">
+              <i class="fa fa-heart"></i>
+            </button>
+            <a
+              :href="`https://www.imdb.com/title/${info.imdbID}/`"
+              class="button"
+              target="_blank"
+              >IMDb</a
+            >
+          </div> -->
+        </div>
+      </div>
+      <div class="card-body">
+        <p class="card-text"><b>Actors: </b>{{ info.Actors }}</p>
+        <p class="card-text"><b>Genre: </b>{{ info.Genre }}</p>
+        <p class="card-text"><b>Language: </b>{{ info.Language }}</p>
+        <p class="card-text"><b>Type: </b>{{ info.Type }}</p>
+        <p class="card-text"><b>Runtime: </b>{{ info.Runtime }}</p>
+        <p class="card-text"><b>Writer: </b>{{ info.Writer }}</p>
+        <p class="card-text"><b>imdbID: </b>{{ info.imdbID }}</p>
+        <p class="card-text"><b>imdbRating: </b>{{ info.imdbRating }} / 10</p>
+        <p class="card-text"><b>Country: </b>{{ info.Country }}</p>
+
+        <button class="btn btn-danger" @click="$router.push(`/`)">
+          Back To Home
+        </button>
+      </div>
+    </div>
+  </div>
+</template>
+
+<script>
+import axios from "axios";
+export default {
+  data() {
+    return {
+      info: {}
+    };
+  },
+  created() {
+    //   http://www.omdbapi.com/?apikey=1feca478&i=tt1790864
+    axios
+      .get(`http://www.omdbapi.com/?apikey=1feca478&i=${this.$route.params.id}`)
+      .then(movie_info_response => {
+        this.info = movie_info_response.data;
+        console.log("info", this.info);
+      })
+      .catch(error => {
+        console.log(error);
+      });
+    // console.log("info:", this.info);
+    // this.$emit("Get-Info-event", id);
+  }
+};
+</script>
+
+<style>
+.one {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+.card {
+  width: 60%;
+  margin: auto;
+}
+.card-img-top {
+  margin-top: 70px;
+  width: 500px;
+}
+.card-title {
+  font-size: 50px;
+  font-weight: bold;
+}
+.btnn {
+  border: none !important;
+  outline: none !important;
+  background-color: transparent;
+}
+</style>
