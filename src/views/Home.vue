@@ -23,6 +23,8 @@
   </div>
 </template>
 
+
+
 <script>
 import axios from "axios";
 import Movies from "@/components/Movies";
