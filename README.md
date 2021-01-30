@@ -6,6 +6,6 @@ I used HTML, CSS 3, Bootstrap 5,Vue 3(include vue router , vuex), Api, Axios, js
 
 It's the first version of the website and I'll make it better in the next version
 
-It contains three pages (Home), (Favorite), (About).
+It contains three pages (Home), (Favorite), (Details).
 
 If you have any feedback about the website, please let me know
