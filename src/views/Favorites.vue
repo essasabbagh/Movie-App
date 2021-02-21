@@ -1,7 +1,6 @@
 <template>
   <div class="favorites">
     <h1 class="mb-5 mt-5">Favorites Movies</h1>
-    <!-- <p v-if="favList.length == 0">There is no Movies</p> -->
     <p v-if="favList.length == 0" class="mx-auto fs-1 text-muted">
       There is no movie <span class="fs-2 text-muted">ㄟ( ▔, ▔ )ㄏ</span>
     </p>
