@@ -1,13 +1,27 @@
 <template>
   <div class="home">
     <input
+      autofocus
+      type="text"
+      class="form-control search_text mt-5 mb-5"
+      list="datalistOptions"
+      id="exampleDataList"
+      placeholder="Write name of movie ..."
+      v-model="movieName"
+      @keyup.enter="getMovieInfo"
+    />
+    <datalist id="datalistOptions">
+      <option value="San Francisco"></option>
+    </datalist>
+
+    <!-- <input
       type="text"
       autofocus
       placeholder="Write name of movie ..."
       class="search_text mt-5 mb-5"
       v-model="movieName"
       @keyup.enter="getMovieInfo"
-    />
+    /> -->
     <!-- <div class="spinner-border" role="status">
       <span class="sr-only">Loading...</span>
     </div> -->
@@ -21,6 +35,9 @@
         @Remove-From-Favourite-event="removeFromFavorite"
         @click="$router.push(`/details/${movie.imdbID}`)"
       />
+      <p v-if="movieList.length == 0" class="mx-auto fs-1 text-muted">
+        There is no movie <span class="fs-2 text-muted">ㄟ( ▔, ▔ )ㄏ</span>
+      </p>
     </div>
   </div>
 </template>
@@ -31,14 +48,14 @@ import Movies from "@/components/Movies";
 
 export default {
   components: {
-    Movies
+    Movies,
   },
   data() {
     return {
       movieName: null,
       movieDetails: null,
       movieList: [],
-      favList: []
+      favList: [],
     };
   },
 
@@ -46,7 +63,7 @@ export default {
     getMovieInfo() {
       axios
         .get(`http://www.omdbapi.com/?apikey=1feca478&t=${this.movieName}`)
-        .then(movie_info_response => {
+        .then((movie_info_response) => {
           if (movie_info_response.data.Response === "False") {
             alert("There is no movie with this name");
           } else {
@@ -55,7 +72,7 @@ export default {
             this.movieList.push(movie_info_response.data);
           }
         })
-        .catch(error => {
+        .catch((error) => {
           console.log(error);
         });
       this.movieDetails = null;
@@ -64,27 +81,27 @@ export default {
     addToFavorite(item) {
       axios
         .post("http://localhost:3000/myFav", item)
-        .then(res => {
+        .then((res) => {
           this.favList.push(res.data);
           console.log("FavoriteList", this.favList);
         })
-        .catch(error => {
+        .catch((error) => {
           console.log(error);
         });
     },
     removeFromFavorite(item) {
       axios
         .delete(`http://localhost:3000/myFav/${item.id}`)
-        .then(res => {
+        .then((res) => {
           console.log(res);
-          this.favList = this.favList.filter(e => e.id !== item.id);
+          this.favList = this.favList.filter((e) => e.id !== item.id);
           console.log("FavoriteList", this.favList);
         })
-        .catch(error => {
+        .catch((error) => {
           console.log(error);
         });
-    }
-  }
+    },
+  },
 };
 </script>
 
