@@ -1,6 +1,6 @@
 <template>
   <div>
-    <nav class="navbar navbar-expand-lg navbar-light bg-dark">
+    <nav class="navbar navbar-expand-lg navbar-light">
       <div class="container-fluid">
         <a class="navbar-brand" href="#">Movie App</a>
         <button
@@ -35,6 +35,15 @@
 </template>
 
 <style>
+.navbar {
+  background: linear-gradient(to bottom, #323232 0%, #3f3f3f 40%, #1c1c1c 150%),
+    linear-gradient(
+      to top,
+      rgba(255, 255, 255, 0.5) 0%,
+      rgba(0, 0, 0, 0.25) 200%
+    );
+  background-blend-mode: multiply;
+}
 span {
   color: aliceblue;
   margin-left: auto;

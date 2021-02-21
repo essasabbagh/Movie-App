@@ -3,7 +3,6 @@
 
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap');
 
-
 body {
   font-family: 'Poppins', sans-serif;
   margin: 0;
@@ -123,11 +122,11 @@ header ul li a.active {
   text-align: justify;
 }
 
-.info .button {
+.button {
   border: none;
   background-color: #f5c517;
   border: 1px solid #f5c517;
-  padding: 10px 20px;
+  padding: 5px 10px;
   color: black;
   font-weight: bold;
   font-size: 15px;
@@ -137,7 +136,7 @@ header ul li a.active {
   text-decoration: none;
   border-radius: 10px;
 }
-.info .button:hover {
+.button:hover {
   background-color: #fadb68;
   transition: all 0.3s;
 }

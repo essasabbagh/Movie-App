@@ -11,19 +11,19 @@
     <!-- <div class="spinner-border" role="status">
       <span class="sr-only">Loading...</span>
     </div> -->
-    <Movies
-      v-for="(movie, index) in movieList"
-      :key="index"
-      :details="movie"
-      :favList="favList"
-      @Add-To-Favourite-event="addToFavorite"
-      @Remove-From-Favourite-event="removeFromFavorite"
-      @click="$router.push(`/details/${movie.imdbID}`)"
-    />
+    <div class="container">
+      <Movies
+        v-for="(movie, index) in movieList"
+        :key="index"
+        :details="movie"
+        :favList="favList"
+        @Add-To-Favourite-event="addToFavorite"
+        @Remove-From-Favourite-event="removeFromFavorite"
+        @click="$router.push(`/details/${movie.imdbID}`)"
+      />
+    </div>
   </div>
 </template>
-
-
 
 <script>
 import axios from "axios";
@@ -95,10 +95,11 @@ export default {
   align-items: center;
   flex-direction: column;
 }
-.mt-5 {
-  margin-top: 6rem !important;
+.container {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
 }
-
 .moveUp-enter-active {
   animation: fadeIn 1s ease-in;
 }

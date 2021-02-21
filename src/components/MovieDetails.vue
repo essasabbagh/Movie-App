@@ -9,7 +9,7 @@
         />
         <div class="card-body">
           <h4 class="card-title">
-            {{ info.Title }} <small class="text-muted">{{ info.Year }}</small>
+            {{ info.Title }} <small class="text-muted ">{{ info.Year }}</small>
           </h4>
           <p class="card-text">
             <b>Plot: </b>
@@ -77,6 +77,9 @@ export default {
 </script>
 
 <style>
+.text-muted {
+  font-size: 50%;
+}
 .one {
   display: flex;
   flex-direction: row;
@@ -88,7 +91,6 @@ export default {
   margin: auto;
 }
 .card-img-top {
-  margin-top: 70px;
   width: 500px;
 }
 .card-title {

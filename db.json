@@ -1,6 +1,5 @@
 {
-  "myMovie": [],
-  "myFav": [
+  "myMovie": [
     {
       "Title": "Boyz n the Hood",
       "Year": "1991",
@@ -42,5 +41,46 @@
       "Response": "True",
       "id": 1
     }
-  ]
+  ],
+  "myFav": [{
+    "Title": "Boyz n the Hood",
+    "Year": "1991",
+    "Rated": "R",
+    "Released": "12 Jul 1991",
+    "Runtime": "112 min",
+    "Genre": "Crime, Drama",
+    "Director": "John Singleton",
+    "Writer": "John Singleton",
+    "Actors": "Hudhail Al-Amir, Lloyd Avery II, Angela Bassett, Miya McGhee",
+    "Plot": "Follows the lives of three young males living in the Crenshaw ghetto of Los Angeles, dissecting questions of race, relationships, violence, and future prospects.",
+    "Language": "English",
+    "Country": "USA",
+    "Awards": "Nominated for 2 Oscars. Another 11 wins & 21 nominations.",
+    "Poster": "https://m.media-amazon.com/images/M/MV5BZmRjNDI5NTgtOTIwMC00MzJhLWI4ZTYtMmU0ZTE3ZmRkZDNhXkEyXkFqcGdeQXVyMTQxNzMzNDI@._V1_SX300.jpg",
+    "Ratings": [
+      {
+        "Source": "Internet Movie Database",
+        "Value": "7.8/10"
+      },
+      {
+        "Source": "Rotten Tomatoes",
+        "Value": "96%"
+      },
+      {
+        "Source": "Metacritic",
+        "Value": "76/100"
+      }
+    ],
+    "Metascore": "76",
+    "imdbRating": "7.8",
+    "imdbVotes": "124,998",
+    "imdbID": "tt0101507",
+    "Type": "movie",
+    "DVD": "N/A",
+    "BoxOffice": "$57,504,069",
+    "Production": "Columbia Pictures Corporation",
+    "Website": "N/A",
+    "Response": "True",
+    "id": 1
+  }]
 }

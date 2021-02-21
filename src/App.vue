@@ -23,17 +23,15 @@ export default {
 .fade-leave-active {
   transition: opacity 10s;
 }
-.fade-enter, .fade-leave-to {
+.fade-enter,
+.fade-leave-to {
   opacity: 0;
 }
 
 #nav {
-  /* padding: 30px; */
   font-size: larger;
-  position: fixed;
   width: 100%;
   box-shadow: 2px 2px 10px rgba(34, 34, 34, 0.5);
-  z-index: 1;
 }
 
 #nav a {
