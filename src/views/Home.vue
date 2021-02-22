@@ -2,6 +2,7 @@
   <div class="home">
     <input
       autofocus
+      tabindex="0"
       type="text"
       class="form-control search_text mt-5 mb-5"
       list="datalistOptions"

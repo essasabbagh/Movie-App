@@ -4,14 +4,16 @@
     <p v-if="favList.length == 0" class="mx-auto fs-1 text-muted">
       There is no movie <span class="fs-2 text-muted">ㄟ( ▔, ▔ )ㄏ</span>
     </p>
-    <Movies
-      v-for="(movie, index) in favList"
-      :key="index"
-      :details="movie"
-      :favList="favList"
-      @Remove-From-Favourite-event="removeFromFavorite"
-      @click="$router.push(`/details/${movie.imdbID}`)"
-    />
+    <div class="container">
+      <Movies
+        v-for="(movie, index) in favList"
+        :key="index"
+        :details="movie"
+        :favList="favList"
+        @Remove-From-Favourite-event="removeFromFavorite"
+        @click="$router.push(`/details/${movie.imdbID}`)"
+      />
+    </div>
   </div>
 </template>
 
@@ -58,7 +60,7 @@ export default {
 <style>
 .favorites {
   display: flex;
-  justify-content: center;
+  justify-content: start;
   align-items: center;
   flex-direction: column;
 }

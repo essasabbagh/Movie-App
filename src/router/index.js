@@ -1,6 +1,5 @@
 import { createRouter, createWebHashHistory } from "vue-router";
 import Home from "../views/Home.vue";
-import Details from "../views/Details.vue";
 import NotFoundPage from "@/views/NotFoundPage.vue";
 
 const routes = [
@@ -11,21 +10,28 @@ const routes = [
   },
   {
     path: "/favorites",
-    name: "favorites",
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
+    name: "Favorites",
     component: () =>
-      import(/* webpackChunkName: "about" */ "../views/Favorites.vue")
+      import(/* webpackChunkName: "favorites" */ "../views/Favorites.vue")
   },
   {
-    path: "/Details",
-    component: Details
+    path: "/advance",
+    name: "Advance",
+    component: () =>
+      import(/* webpackChunkName: "advance" */ "../views/Advance.vue")
+  },
+  {
+    path: "/about",
+    name: "About",
+    component: () =>
+      import(/* webpackChunkName: "about" */ "../views/About.vue")
   },
   {
     path: "/Details/:id",
     props: true,
-    component: Details
+    component: () =>
+      import(/* webpackChunkName: "details" */ "../views/Details.vue")
+    // component: Details
   },
   {
     path: "/not-found",

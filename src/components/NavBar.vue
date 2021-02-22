@@ -22,9 +22,15 @@
               >
             </li>
             <li class="nav-item">
-              <router-link to="/Favorites" class="nav-link"
+              <router-link to="/favorites" class="nav-link"
                 >Favorites</router-link
               >
+            </li>
+            <li class="nav-item">
+              <router-link to="/advance" class="nav-link">Advance</router-link>
+            </li>
+            <li class="nav-item">
+              <router-link to="/about" class="nav-link">About</router-link>
             </li>
           </ul>
           <span> Movie App | Kodluyoruz </span>
