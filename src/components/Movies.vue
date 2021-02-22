@@ -5,11 +5,11 @@
         <img :src="details.Poster" class="img-fluid image" />
       </div>
       <div class="cardBody">
-        <div class="cardPara">
+        <!-- <div class="cardPara">
           <p class="card-text">
             {{ details.Plot }}
           </p>
-        </div>
+        </div> -->
         <div class="cardFooter">
           <div class="action_container">
             <button
@@ -91,6 +91,7 @@ small {
   width: 300px !important;
   height: 444px !important;
   border-radius: 10px !important;
+  overflow: hidden;
   transition: all 0.2s ease-in-out;
 }
 .movie-card:hover {
@@ -98,10 +99,14 @@ small {
   -moz-box-shadow: 10px 9px 25px -10px rgba(0, 0, 0, 0.75);
   box-shadow: 10px 9px 25px -10px rgba(0, 0, 0, 0.75);
 }
+.movie-card:hover img {
+  opacity: 0.7;
+}
 .movie-card img {
   border-radius: 10px !important;
   position: absolute;
   z-index: 1;
+  transition: all 0.3s ease-in-out;
 }
 
 .cardBody {
@@ -112,7 +117,10 @@ small {
   z-index: 3;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  justify-content: end;
+  transform: translateY(10px);
+  opacity: 0;
+  transition: all 0.3s ease-in-out;
 }
 .cardPara {
   border-radius: 10px 10px 0 0 !important;
@@ -130,7 +138,7 @@ small {
   opacity: 0;
   transition: all 0.3s ease-in-out;
 }
-.cardBody:hover .cardPara {
+.cardBody:hover{
   transform: translateY(0);
   opacity: 1;
 }
