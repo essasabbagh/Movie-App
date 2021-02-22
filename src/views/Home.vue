@@ -9,20 +9,18 @@
       id="exampleDataList"
       placeholder="Write name of movie ..."
       v-model="movieName"
+      @input="getMoviesSuggestions"
+      @select="getMovieInfo"
       @keyup.enter="getMovieInfo"
     />
     <datalist id="datalistOptions">
-      <option value="San Francisco"></option>
+      <option
+        v-for="suggestion in suggestionsList"
+        :key="suggestion.imdbID"
+        :value="suggestion.Title"
+      ></option>
     </datalist>
 
-    <!-- <input
-      type="text"
-      autofocus
-      placeholder="Write name of movie ..."
-      class="search_text mt-5 mb-5"
-      v-model="movieName"
-      @keyup.enter="getMovieInfo"
-    /> -->
     <!-- <div class="spinner-border" role="status">
       <span class="sr-only">Loading...</span>
     </div> -->
@@ -57,20 +55,35 @@ export default {
       movieDetails: null,
       movieList: [],
       favList: [],
+      suggestionsList: [],
     };
   },
 
   methods: {
+    getMoviesSuggestions() {
+      axios
+        .get(`http://www.omdbapi.com/?apikey=1feca478&s=${this.movieName}`)
+        .then((movie_info_response) => {
+          if (movie_info_response.data.Response !== "False") {
+            console.log("suggestionsList", movie_info_response.data.Search);
+            this.suggestionsList = movie_info_response.data.Search;
+          }
+        })
+        .catch((err) => {
+          console.error(err);
+        });
+    },
     getMovieInfo() {
       axios
-        .get(`http://www.omdbapi.com/?apikey=1feca478&t=${this.movieName}`)
+        .get(`http://www.omdbapi.com/?apikey=1feca478&s=${this.movieName}`)
         .then((movie_info_response) => {
           if (movie_info_response.data.Response === "False") {
             alert("There is no movie with this name");
           } else {
-            this.movieDetails = movie_info_response.data;
-            console.log("movieDetails", this.movieDetails);
-            this.movieList.push(movie_info_response.data);
+            console.log(movie_info_response.data.Search);
+            // this.movieDetails = movie_info_response.data;
+            // console.log("movieDetails", this.movieDetails);
+            this.movieList = movie_info_response.data.Search;
           }
         })
         .catch((error) => {

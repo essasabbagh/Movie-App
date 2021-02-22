@@ -1,0 +1,11 @@
+1feca478
+
+http://www.omdbapi.com/?apikey=1feca478&
+http://img.omdbapi.com/?apikey=1feca478&
+
+http://www.omdbapi.com/?apikey=1feca478&s={---} // search
+
+http://www.omdbapi.com/?apikey=1feca478&i=tt1790864  // info
+http://img.omdbapi.com/?apikey=1feca478&i=tt1790864    //img
+
+http://www.omdbapi.com/?apikey=1feca478&t=The+Maze+Runner
