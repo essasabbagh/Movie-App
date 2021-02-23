@@ -1,35 +1,20 @@
 <template>
   <div class="poster">
     <div class="card mb-3">
-      <div class="one mt-10">
+      <div class="one">
         <img
           :src="`http://img.omdbapi.com/?apikey=1feca478&i=${info.imdbID}`"
           class="card-img-top"
-          alt="..."
+          :alt="info.Title"
         />
         <div class="card-body">
           <h4 class="card-title">
-            {{ info.Title }} <small class="text-muted ">{{ info.Year }}</small>
+            {{ info.Title }} <small class="text-muted">{{ info.Year }}</small>
           </h4>
           <p class="card-text">
             <b>Plot: </b>
             {{ info.Plot }}
           </p>
-          <!-- <div class="action_container">
-            <button @click.stop="removeFromFav(details)" class="btnn">
-              <i class="isFavourite fa fa-heart"></i>
-            </button>
-
-            <button class="btnn" @click.stop="addToFav(details)">
-              <i class="fa fa-heart"></i>
-            </button>
-            <a
-              :href="`https://www.imdb.com/title/${info.imdbID}/`"
-              class="button"
-              target="_blank"
-              >IMDb</a
-            >
-          </div> -->
         </div>
       </div>
       <div class="card-body">
@@ -56,23 +41,20 @@ import axios from "axios";
 export default {
   data() {
     return {
-      info: {}
+      info: {},
     };
   },
   created() {
-    //   http://www.omdbapi.com/?apikey=1feca478&i=tt1790864
     axios
       .get(`http://www.omdbapi.com/?apikey=1feca478&i=${this.$route.params.id}`)
-      .then(movie_info_response => {
+      .then((movie_info_response) => {
         this.info = movie_info_response.data;
         console.log("info", this.info);
       })
-      .catch(error => {
+      .catch((error) => {
         console.log(error);
       });
-    // console.log("info:", this.info);
-    // this.$emit("Get-Info-event", id);
-  }
+  },
 };
 </script>
 
@@ -101,5 +83,14 @@ export default {
   border: none !important;
   outline: none !important;
   background-color: transparent;
+}
+@media only screen and (max-width: 990px) {
+  .one {
+    flex-direction: column;
+  }
+  .card,
+  .card-img-top {
+    width: 100%;
+  }
 }
 </style>
