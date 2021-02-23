@@ -2,7 +2,7 @@
   <div id="movies">
     <div class="card movie-card">
       <div class="bg-image">
-        <img :src="movieInfo.Poster" class="img-fluid image" />
+        <img :src="img" class="img-fluid image" />
       </div>
       <div class="cardBody">
         <div class="cardFooter">
@@ -54,6 +54,11 @@ export default {
       });
   },
   computed: {
+    img() {
+      return this.movieInfo.Poster == "N/A"
+        ? `../assets/noposter.jpg`
+        : this.movieInfo.Poster;
+    },
     isFavorite() {
       const arr = JSON.parse(localStorage.getItem("movie")) || [];
       return arr.find((e) => e.imdbID == this.details.imdbID);
@@ -65,13 +70,13 @@ export default {
       const arr = JSON.parse(localStorage.getItem("movie")) || [];
       arr.push(movie);
       localStorage.setItem("movie", JSON.stringify(arr));
-      this.$router.push(`/favorites`)
+      this.$router.push(`/favorites`);
     },
     removeFromFav(item) {
       const arr = JSON.parse(localStorage.getItem("movie")) || [];
       const arr2 = arr.filter((movie) => movie.imdbID != item.imdbID);
       localStorage.setItem("movie", JSON.stringify(arr2));
-      this.$router.push(`/favorites`)
+      this.$router.push(`/favorites`);
     },
   },
 };
