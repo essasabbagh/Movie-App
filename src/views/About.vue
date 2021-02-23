@@ -1,5 +1,6 @@
 <template>
   <div class="about container mt-5">
+    <img src="/favicon/android-chrome-192x192.png" alt="MovieAppIcon">
     <h1 class="">About</h1>
     <p>
       This application made for assignment in Vue js
