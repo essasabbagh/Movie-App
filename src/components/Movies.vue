@@ -2,35 +2,30 @@
   <div id="movies">
     <div class="card movie-card">
       <div class="bg-image">
-        <img :src="details.Poster" class="img-fluid image" />
+        <img :src="movieInfo.Poster" class="img-fluid image" />
       </div>
       <div class="cardBody">
-        <!-- <div class="cardPara">
-          <p class="card-text">
-            {{ details.Plot }}
-          </p>
-        </div> -->
         <div class="cardFooter">
           <div class="action_container">
             <button
-              @click.stop="removeFromFav(details)"
-              v-if="isFav"
+              @click.stop="removeFromFav(movieInfo)"
+              v-if="isFavorite"
               class="btnn"
             >
-              <i class="isFavourite fa fa-heart"></i>
+              <i class="isFavorite fa fa-heart"></i>
             </button>
-            <button v-else class="btnn" @click.stop="addToFav(details)">
+            <button v-else class="btnn" @click.stop="addToFav(movieInfo)">
               <i class="fa fa-heart"></i>
             </button>
             <a
-              :href="`https://www.imdb.com/title/${details.imdbID}/`"
+              :href="`https://www.imdb.com/title/${movieInfo.imdbID}/`"
               target="_blank"
               class="button"
               >IMDb</a
             >
           </div>
           <h5 class="card-titl">
-            {{ details.Title }} <small>{{ details.Year }}</small>
+            {{ movieInfo.Title }} <small>{{ movieInfo.Year }}</small>
           </h5>
         </div>
       </div>
@@ -43,33 +38,42 @@ export default {
   props: ["details"],
   data() {
     return {
-      AllFavList: []
+      AllFavList: [],
+      movieInfo: {},
     };
   },
   created() {
     axios
-      .get(`http://localhost:3000/myFav`)
-      .then(fav_info_response => {
-        this.AllFavList = fav_info_response.data;
-        console.log("movieDetails", this.AllFavList);
+      .get(`http://www.omdbapi.com/?apikey=1feca478&i=${this.details.imdbID}`)
+      .then((movie_info_response) => {
+        console.log(movie_info_response.data);
+        this.movieInfo = movie_info_response.data;
       })
-      .catch(error => {
-        console.log(error);
+      .catch((err) => {
+        console.error(err);
       });
   },
   computed: {
-    isFav() {
-      return Boolean(this.AllFavList.find(i => i.id === this.details.id));
-    }
+    isFavorite() {
+      const arr = JSON.parse(localStorage.getItem("movie")) || [];
+      return arr.find((e) => e.imdbID == this.details.imdbID);
+    },
   },
   methods: {
-    addToFav(id) {
-      this.$emit("Add-To-Favourite-event", id);
+    addToFav(item) {
+      const movie = { title: item.Title, imdbID: item.imdbID };
+      const arr = JSON.parse(localStorage.getItem("movie")) || [];
+      arr.push(movie);
+      localStorage.setItem("movie", JSON.stringify(arr));
+      this.$router.push(`/favorites`)
     },
-    removeFromFav(id) {
-      this.$emit("Remove-From-Favourite-event", id);
-    }
-  }
+    removeFromFav(item) {
+      const arr = JSON.parse(localStorage.getItem("movie")) || [];
+      const arr2 = arr.filter((movie) => movie.imdbID != item.imdbID);
+      localStorage.setItem("movie", JSON.stringify(arr2));
+      this.$router.push(`/favorites`)
+    },
+  },
 };
 </script>
 <style scoped>
@@ -79,7 +83,7 @@ export default {
 small {
   font-size: 50%;
 }
-.isFavourite {
+.isFavorite {
   color: red !important;
 }
 .btnn {
@@ -138,7 +142,7 @@ small {
   opacity: 0;
   transition: all 0.3s ease-in-out;
 }
-.cardBody:hover{
+.cardBody:hover {
   transform: translateY(0);
   opacity: 1;
 }
