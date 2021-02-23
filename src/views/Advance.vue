@@ -54,9 +54,6 @@
         v-for="(movie, index) in movieList"
         :key="index"
         :details="movie"
-        :favList="favList"
-        @Add-To-Favourite-event="addToFavorite"
-        @Remove-From-Favourite-event="removeFromFavorite"
         @click="$router.push(`/details/${movie.imdbID}`)"
       />
       <div v-if="movieList.length == 0" class="mx-auto text-center">
@@ -79,7 +76,6 @@ export default {
     return {
       movieName: null,
       movieList: [],
-      favList: [],
       suggestionsList: [],
       selectedYear: "year",
       selectedType: "select",
@@ -107,6 +103,7 @@ export default {
         });
     },
     getMovieInfo() {
+      this.movieList = [];
       axios
         .get(
           `http://www.omdbapi.com/?apikey=1feca478&type=${
@@ -123,29 +120,6 @@ export default {
             console.log(movie_info_response.data.Search);
             this.movieList = movie_info_response.data.Search;
           }
-        })
-        .catch((error) => {
-          console.log(error);
-        });
-    },
-    addToFavorite(item) {
-      axios
-        .post("http://localhost:3000/myFav", item)
-        .then((res) => {
-          this.favList.push(res.data);
-          console.log("FavoriteList", this.favList);
-        })
-        .catch((error) => {
-          console.log(error);
-        });
-    },
-    removeFromFavorite(item) {
-      axios
-        .delete(`http://localhost:3000/myFav/${item.id}`)
-        .then((res) => {
-          console.log(res);
-          this.favList = this.favList.filter((e) => e.id !== item.id);
-          console.log("FavoriteList", this.favList);
         })
         .catch((error) => {
           console.log(error);
@@ -184,7 +158,6 @@ export default {
 .advanceForm {
   display: flex;
   flex-direction: row;
-  /* flex-wrap: wrap; */
   justify-content: space-between;
 }
 </style>
