@@ -59,9 +59,10 @@
         @Remove-From-Favourite-event="removeFromFavorite"
         @click="$router.push(`/details/${movie.imdbID}`)"
       />
-      <p v-if="movieList.length == 0" class="mx-auto fs-1 text-muted">
-        There is no movie <span class="fs-2 text-muted">ㄟ( ▔, ▔ )ㄏ</span>
-      </p>
+      <div v-if="movieList.length == 0" class="mx-auto text-center">
+        <p class="fs-1 text-muted">There is no movie</p>
+        <p><span class="fs-1 text-muted">ㄟ( ▔, ▔ )ㄏ</span></p>
+      </div>
     </div>
   </div>
 </template>

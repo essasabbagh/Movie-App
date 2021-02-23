@@ -24,6 +24,9 @@
     <!-- <div class="spinner-border" role="status">
       <span class="sr-only">Loading...</span>
     </div> -->
+    <div v-if="wrong" class="alert alert-danger" role="alert">
+      {{ wrong }}
+    </div>
     <div class="container">
       <Movies
         v-for="(movie, index) in movieList"
@@ -34,9 +37,10 @@
         @Remove-From-Favourite-event="removeFromFavorite"
         @click="$router.push(`/details/${movie.imdbID}`)"
       />
-      <p v-if="movieList.length == 0" class="mx-auto fs-1 text-muted">
-        There is no movie <span class="fs-2 text-muted">ㄟ( ▔, ▔ )ㄏ</span>
-      </p>
+      <div v-if="movieList.length == 0" class="mx-auto text-center">
+        <p class="fs-1 text-muted">There is no movie</p>
+        <p><span class="fs-1 text-muted">ㄟ( ▔, ▔ )ㄏ</span></p>
+      </div>
     </div>
   </div>
 </template>
@@ -56,11 +60,13 @@ export default {
       movieList: [],
       favList: [],
       suggestionsList: [],
+      wrong: null,
     };
   },
 
   methods: {
     getMoviesSuggestions() {
+      this.wrong = null;
       axios
         .get(`http://www.omdbapi.com/?apikey=1feca478&s=${this.movieName}`)
         .then((movie_info_response) => {
@@ -78,8 +84,9 @@ export default {
         .get(`http://www.omdbapi.com/?apikey=1feca478&s=${this.movieName}`)
         .then((movie_info_response) => {
           if (movie_info_response.data.Response === "False") {
-            alert("There is no movie with this name");
+            this.wrong = "There is no movie with this name!";
           } else {
+            this.wrong = null;
             console.log(movie_info_response.data.Search);
             this.movieList = movie_info_response.data.Search;
           }
