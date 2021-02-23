@@ -81,8 +81,6 @@ export default {
             alert("There is no movie with this name");
           } else {
             console.log(movie_info_response.data.Search);
-            // this.movieDetails = movie_info_response.data;
-            // console.log("movieDetails", this.movieDetails);
             this.movieList = movie_info_response.data.Search;
           }
         })
