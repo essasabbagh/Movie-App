@@ -42,13 +42,12 @@
       </li>
       <li>
         <strong
-          ><a href="https://firebase.google.com/" target="_blank">Firebase</a
+          ><a href="https://www.netlify.com/" target="_blank">Netlify</a
           >: </strong
         >For hosting
       </li>
     </ul>
     <div>
-      <h6 class="text-center">Links</h6>
       <div class="fs-2">
         <a
           class="m-5"
