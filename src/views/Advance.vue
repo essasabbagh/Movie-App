@@ -3,7 +3,7 @@
     <div class="advanceForm">
       <select
         v-model="selectedType"
-        class="form-select m-5"
+        class="form-select my-5 me-2"
         aria-label="Default select example"
       >
         <option selected value="select">Type of result</option>
@@ -13,7 +13,7 @@
       </select>
       <select
         v-model="selectedYear"
-        class="form-select m-5"
+        class="form-select my-5 ms-2"
         aria-label="Default select example"
       >
         <option selected value="year">Year</option>
@@ -70,7 +70,7 @@ import Movies from "@/components/Movies";
 
 export default {
   components: {
-    Movies,
+    Movies
   },
   data() {
     return {
@@ -79,7 +79,7 @@ export default {
       suggestionsList: [],
       selectedYear: "year",
       selectedType: "select",
-      wrong: null,
+      wrong: null
     };
   },
 
@@ -92,13 +92,13 @@ export default {
             this.selectedType
           }&y=${parseInt(this.selectedYear)}&s=${this.movieName}`
         )
-        .then((movie_info_response) => {
+        .then(movie_info_response => {
           if (movie_info_response.data.Response !== "False") {
             console.log("suggestionsList", movie_info_response.data.Search);
             this.suggestionsList = movie_info_response.data.Search;
           }
         })
-        .catch((err) => {
+        .catch(err => {
           console.error(err);
         });
     },
@@ -110,7 +110,7 @@ export default {
             this.selectedType
           }&y=${parseInt(this.selectedYear)}&s=${this.movieName}`
         )
-        .then((movie_info_response) => {
+        .then(movie_info_response => {
           if (this.selectedYear === "year" || this.selectedType === "select") {
             this.wrong = "You have to set parameter!";
           } else if (movie_info_response.data.Response === "False") {
@@ -121,10 +121,10 @@ export default {
             this.movieList = movie_info_response.data.Search;
           }
         })
-        .catch((error) => {
+        .catch(error => {
           console.log(error);
         });
-    },
+    }
   },
   computed: {
     allYears() {
@@ -138,8 +138,8 @@ export default {
       for (let i = first; i <= second; i++) arr.push(i);
 
       return arr;
-    },
-  },
+    }
+  }
 };
 </script>
 
@@ -156,6 +156,7 @@ export default {
   flex-wrap: wrap;
 }
 .advanceForm {
+  
   display: flex;
   flex-direction: row;
   justify-content: space-between;
