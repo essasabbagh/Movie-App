@@ -4,17 +4,23 @@
       <div class="container-fluid">
         <a class="navbar-brand" href="#">Movie App</a>
         <button
+          @click="openToggle"
+          :class="{ collapsed: isOpen }"
           class="navbar-toggler"
           type="button"
           data-bs-toggle="collapse"
           data-bs-target="#navbarNav"
           aria-controls="navbarNav"
-          aria-expanded="false"
+          :aria-expanded="isOpen"
           aria-label="Toggle navigation"
         >
           <span class="navbar-toggler-icon"></span>
         </button>
-        <div class="collapse navbar-collapse" id="navbarNav">
+        <div
+          class="collapse navbar-collapse"
+          :class="{ show: isOpen }"
+          id="navbarNav"
+        >
           <ul class="navbar-nav">
             <li class="nav-item">
               <router-link to="/" class="nav-link active" aria-current="page"
@@ -40,6 +46,20 @@
   </div>
 </template>
 
+<script>
+export default {
+  data() {
+    return {
+      isOpen: false,
+    };
+  },
+  methods: {
+    openToggle() {
+      this.isOpen = !this.isOpen
+    },
+  },
+};
+</script>
 <style>
 .navbar {
   background: linear-gradient(to bottom, #323232 0%, #3f3f3f 40%, #1c1c1c 150%),
