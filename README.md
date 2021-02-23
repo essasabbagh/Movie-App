@@ -1,6 +1,6 @@
 # Movie-app
 
-This application made for assignment in Vue js [Kodluyoruz](https://www.kodluyoruz.org/bootcamp/istanbul-uygulamali-vue-js-bootcamp/) bootcamp  
+This application made for an assignment in Vue js [Kodluyoruz](https://www.kodluyoruz.org/bootcamp/istanbul-uygulamali-vue-js-bootcamp/) Bootcamp  
 
 I used HTML, CSS 3, Bootstrap 5,Vue 3(include vue router , vuex), Api, Axios, json-server 
 
