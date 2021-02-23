@@ -50,14 +50,14 @@
 export default {
   data() {
     return {
-      isOpen: false,
+      isOpen: false
     };
   },
   methods: {
     openToggle() {
-      this.isOpen = !this.isOpen
-    },
-  },
+      this.isOpen = !this.isOpen;
+    }
+  }
 };
 </script>
 <style>

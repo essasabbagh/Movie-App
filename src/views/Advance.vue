@@ -156,7 +156,6 @@ export default {
   flex-wrap: wrap;
 }
 .advanceForm {
-  
   display: flex;
   flex-direction: row;
   justify-content: space-between;

@@ -39,17 +39,17 @@ export default {
   data() {
     return {
       AllFavList: [],
-      movieInfo: {},
+      movieInfo: {}
     };
   },
   created() {
     axios
       .get(`http://www.omdbapi.com/?apikey=1feca478&i=${this.details.imdbID}`)
-      .then((movie_info_response) => {
+      .then(movie_info_response => {
         console.log(movie_info_response.data);
         this.movieInfo = movie_info_response.data;
       })
-      .catch((err) => {
+      .catch(err => {
         console.error(err);
       });
   },
@@ -61,8 +61,8 @@ export default {
     },
     isFavorite() {
       const arr = JSON.parse(localStorage.getItem("movie")) || [];
-      return arr.find((e) => e.imdbID == this.details.imdbID);
-    },
+      return arr.find(e => e.imdbID == this.details.imdbID);
+    }
   },
   methods: {
     addToFav(item) {
@@ -74,11 +74,11 @@ export default {
     },
     removeFromFav(item) {
       const arr = JSON.parse(localStorage.getItem("movie")) || [];
-      const arr2 = arr.filter((movie) => movie.imdbID != item.imdbID);
+      const arr2 = arr.filter(movie => movie.imdbID != item.imdbID);
       localStorage.setItem("movie", JSON.stringify(arr2));
       this.$router.push(`/favorites`);
-    },
-  },
+    }
+  }
 };
 </script>
 <style scoped>

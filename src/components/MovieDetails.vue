@@ -41,20 +41,20 @@ import axios from "axios";
 export default {
   data() {
     return {
-      info: {},
+      info: {}
     };
   },
   created() {
     axios
       .get(`http://www.omdbapi.com/?apikey=1feca478&i=${this.$route.params.id}`)
-      .then((movie_info_response) => {
+      .then(movie_info_response => {
         this.info = movie_info_response.data;
         console.log("info", this.info);
       })
-      .catch((error) => {
+      .catch(error => {
         console.log(error);
       });
-  },
+  }
 };
 </script>
 

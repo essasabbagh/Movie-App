@@ -20,11 +20,11 @@
 import Movies from "@/components/Movies";
 export default {
   components: {
-    Movies,
+    Movies
   },
   data() {
     return {
-      favList: [],
+      favList: []
     };
   },
   methods: {
@@ -43,7 +43,7 @@ export default {
   },
   created() {
     this.favList = JSON.parse(localStorage.getItem("movie")) || [];
-    console.log("fav",this.favList);
+    console.log("fav", this.favList);
 
     // axios
     //   .get(`http://localhost:3000/myFav`)
@@ -55,7 +55,7 @@ export default {
     //   .catch((error) => {
     //     console.log(error);
     //   });
-  },
+  }
 };
 </script>
 <style>
