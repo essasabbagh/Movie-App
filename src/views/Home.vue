@@ -34,6 +34,7 @@
         :details="movie"
         @click="$router.push(`/details/${movie.imdbID}`)"
       />
+
       <div v-if="movieList.length == 0" class="mx-auto text-center">
         <p class="fs-1 text-muted">There is no movie</p>
         <p><span class="fs-1 text-muted">ㄟ( ▔, ▔ )ㄏ</span></p>
@@ -48,7 +49,7 @@ import Movies from "@/components/Movies";
 
 export default {
   components: {
-    Movies
+    Movies,
   },
   data() {
     return {
@@ -56,7 +57,7 @@ export default {
       movieDetails: null,
       movieList: [],
       suggestionsList: [],
-      wrong: null
+      wrong: null,
     };
   },
 
@@ -65,13 +66,13 @@ export default {
       this.wrong = null;
       axios
         .get(`http://www.omdbapi.com/?apikey=1feca478&s=${this.movieName}`)
-        .then(movie_info_response => {
+        .then((movie_info_response) => {
           if (movie_info_response.data.Response !== "False") {
             console.log("suggestionsList", movie_info_response.data.Search);
             this.suggestionsList = movie_info_response.data.Search;
           }
         })
-        .catch(err => {
+        .catch((err) => {
           console.error(err);
         });
     },
@@ -79,7 +80,7 @@ export default {
       this.movieList = [];
       axios
         .get(`http://www.omdbapi.com/?apikey=1feca478&s=${this.movieName}`)
-        .then(movie_info_response => {
+        .then((movie_info_response) => {
           if (movie_info_response.data.Response === "False") {
             this.wrong = "There is no movie with this name!";
           } else {
@@ -88,13 +89,13 @@ export default {
             this.movieList = movie_info_response.data.Search;
           }
         })
-        .catch(error => {
+        .catch((error) => {
           console.log(error);
         });
       this.movieDetails = null;
       this.movieName = "";
-    }
-  }
+    },
+  },
 };
 </script>
 
