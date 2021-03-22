@@ -4,6 +4,17 @@
       <div class="container-fluid">
         <a class="navbar-brand" href="#">Movie App</a>
         <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarSupportedContent"
+          aria-controls="navbarSupportedContent"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <!-- <button
           @click="openToggle"
           :class="{ collapsed: isOpen }"
           class="navbar-toggler"
@@ -15,12 +26,8 @@
           aria-label="Toggle navigation"
         >
           <span class="navbar-toggler-icon"></span>
-        </button>
-        <div
-          class="collapse navbar-collapse"
-          :class="{ show: isOpen }"
-          id="navbarNav"
-        >
+        </button> -->
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav">
             <li class="nav-item">
               <router-link to="/" class="nav-link active" aria-current="page"
@@ -50,14 +57,14 @@
 export default {
   data() {
     return {
-      isOpen: false
+      isOpen: false,
     };
   },
   methods: {
     openToggle() {
       this.isOpen = !this.isOpen;
-    }
-  }
+    },
+  },
 };
 </script>
 <style>
@@ -73,5 +80,12 @@ export default {
 span {
   color: aliceblue;
   margin-left: auto;
+}
+.router-link-exact-active {
+  transition: all 0.2s ease;
+  text-shadow: 0 0 1px #ff0000;
+}
+.router-link-exact-active:hover {
+  text-shadow: 0 0 5px #ff0000;
 }
 </style>
