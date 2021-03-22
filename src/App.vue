@@ -6,28 +6,22 @@
     <transition name="moveUp" mode="out-in">
       <router-view />
     </transition>
+    <ScrollTopComponent />
   </div>
 </template>
 
 <script>
 import NavBar from "@/components/NavBar";
+import ScrollTopComponent from "@/components/ScrollTopComponent";
 export default {
   components: {
-    NavBar
-  }
+    NavBar,
+    ScrollTopComponent,
+  },
 };
 </script>
 
 <style>
-.fade-enter-active,
-.fade-leave-active {
-  transition: opacity 10s;
-}
-.fade-enter,
-.fade-leave-to {
-  opacity: 0;
-}
-
 #nav {
   font-size: larger;
   width: 100%;
