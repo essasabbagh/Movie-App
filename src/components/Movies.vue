@@ -83,7 +83,7 @@ export default {
 </script>
 <style scoped>
 #movies {
-  margin: 1em;
+  margin: 1em 1.4em;
 }
 small {
   font-size: 50%;
