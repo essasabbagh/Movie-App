@@ -25,20 +25,26 @@
       <span class="sr-only">Loading...</span>
     </div> -->
 
-    <div class="container">
-      <transition-group name="list" tag="div" appear class="container">
+    <div>
+      <transition-group
+        tag="div"
+        appear
+        class="container"
+        @before-enter="beforeEnter"
+        @enter="enter"
+      >
         <Movies
           v-for="(movie, index) in movieList"
           :key="index"
           :details="movie"
+          :data-index="index"
           @click="$router.push(`/details/${movie.imdbID}`)"
         />
       </transition-group>
       <div v-if="movieList.length == 0" class="mx-auto text-center">
-        <p class="fs-1 text-muted">There is no movie</p>
-        <p><span class="fs-1 text-muted">ㄟ( ▔, ▔ )ㄏ</span></p>
+        <p class="fs-1">There is no movie !!</p>
+        <p><span class="display-1">ㄟ( ▔, ▔ )ㄏ</span></p>
       </div>
-      <div v-else></div>
     </div>
     <transition name="alert" mode="out-in">
       <div v-if="wrong" class="alert alert-danger fs-5" role="alert">
@@ -51,7 +57,7 @@
 <script>
 import axios from "axios";
 import Movies from "@/components/Movies";
-
+import gsap from "gsap";
 export default {
   components: {
     Movies,
@@ -67,6 +73,19 @@ export default {
   },
 
   methods: {
+    beforeEnter(el) {
+      el.style.opacity = 0;
+      el.style.transform = "translateY(100px)";
+    },
+    enter(el, done) {
+      gsap.to(el, {
+        opacity: 1,
+        y: 0,
+        duration: 0.8,
+        onComplete: done,
+        delay: el.dataset.index * 0.2,
+      });
+    },
     getMoviesSuggestions() {
       this.wrong = null;
       axios
@@ -114,7 +133,7 @@ export default {
 
 .container {
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   flex-wrap: wrap;
 }
 
@@ -151,6 +170,6 @@ export default {
 }
 
 .alert-enter-active {
-  animation: alert 1s ease;
+  animation: alert 0.8s ease;
 }
 </style>
