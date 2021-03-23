@@ -4,7 +4,7 @@
       autofocus
       tabindex="0"
       type="text"
-      class="form-control search_text mt-5 mb-5"
+      class="form-control search_text mt-5 mb-5 shadow"
       list="datalistOptions"
       id="exampleDataList"
       placeholder="Write name of movie ..."
@@ -24,22 +24,27 @@
     <!-- <div class="spinner-border" role="status">
       <span class="sr-only">Loading...</span>
     </div> -->
-    <div v-if="wrong" class="alert alert-danger" role="alert">
-      {{ wrong }}
-    </div>
-    <div class="container">
-      <Movies
-        v-for="(movie, index) in movieList"
-        :key="index"
-        :details="movie"
-        @click="$router.push(`/details/${movie.imdbID}`)"
-      />
 
+    <div class="container">
+      <transition-group name="list" tag="div" appear class="container">
+        <Movies
+          v-for="(movie, index) in movieList"
+          :key="index"
+          :details="movie"
+          @click="$router.push(`/details/${movie.imdbID}`)"
+        />
+      </transition-group>
       <div v-if="movieList.length == 0" class="mx-auto text-center">
         <p class="fs-1 text-muted">There is no movie</p>
         <p><span class="fs-1 text-muted">ㄟ( ▔, ▔ )ㄏ</span></p>
       </div>
+      <div v-else></div>
     </div>
+    <transition name="alert" mode="out-in">
+      <div v-if="wrong" class="alert alert-danger fs-5" role="alert">
+        {{ wrong }}
+      </div>
+    </transition>
   </div>
 </template>
 
@@ -106,34 +111,46 @@ export default {
   align-items: center;
   flex-direction: column;
 }
+
 .container {
   display: flex;
   justify-content: space-between;
   flex-wrap: wrap;
 }
-.moveUp-enter-active {
-  animation: fadeIn 1s ease-in;
-}
+
 @keyframes fadeIn {
   0% {
     opacity: 0;
-  }
-  50% {
-    opacity: 0.5;
   }
   100% {
     opacity: 1;
   }
 }
-.moveUp-leave-active {
-  animation: moveUp 0.3s ease-in;
+
+.list-enter-active {
+  animation: fadeIn 1s ease;
 }
-@keyframes moveUp {
+
+@keyframes alert {
   0% {
-    transform: translateY(0);
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  50%,
+  70%,
+  90% {
+    transform: translateX(5px);
+  }
+  60%,
+  80% {
+    transform: translateX(-5px);
   }
   100% {
-    transform: translateY(-400px);
+    transform: translateX(0);
   }
+}
+
+.alert-enter-active {
+  animation: alert 1s ease;
 }
 </style>
