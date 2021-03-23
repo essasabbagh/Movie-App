@@ -31,12 +31,12 @@ export default {
   position: fixed;
   bottom: 50px;
   right: 50px;
-  padding: 0.6em 0.8em;
+  padding: 0.5em 0.7em;
   cursor: pointer;
   background-color: #222;
   color: #ff3737;
   text-decoration: none;
-  font-size: 1.6em;
+  font-size: 2em;
   font-weight: bold;
   border-radius: 50%;
   box-shadow: 1px 1px 10px rgba(34, 34, 34, 0.5);
@@ -44,6 +44,6 @@ export default {
 }
 .bottom-right:hover {
   box-shadow: 1px 1px 15px rgba(34, 34, 34, 0.6);
-  text-shadow: 0 0 8px #ff0000;
+  text-shadow: 0 0 10px #ff0000;
 }
 </style>
