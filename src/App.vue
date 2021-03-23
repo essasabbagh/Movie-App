@@ -3,9 +3,15 @@
     <div id="nav">
       <nav-bar />
     </div>
-    <transition name="moveUp" mode="out-in">
+    <!-- <transition name="moveUp" mode="out-in">
       <router-view />
+    </transition> -->
+    
+    <router-view v-slot="{ Component }">
+    <transition name="route" mode="out-in">
+      <component :is="Component"></component>
     </transition>
+  </router-view>
     <ScrollTopComponent />
   </div>
 </template>
@@ -38,7 +44,7 @@ export default {
 }
 
 .moveUp-enter-active {
-  animation: fadeIn 0.3s ease;
+  animation: fadeIn 0.8s ease;
 }
 @keyframes fadeIn {
   0% {
@@ -47,5 +53,22 @@ export default {
   100% {
     opacity: 1;
   }
+}
+
+
+/* route transitions */
+.route-enter-from {
+  opacity: 0;
+  transform: translateX(100px);
+}
+.route-enter-active {
+  transition: all 0.3s ease-out; 
+}
+.route-leave-to {
+  opacity: 0;
+  transform: translateX(-100px);
+}
+.route-leave-active {
+  transition: all 0.3s ease-in; 
 }
 </style>
