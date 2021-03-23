@@ -67,6 +67,7 @@ export default {
   },
 };
 </script>
+
 <style>
 .navbar {
   background: linear-gradient(to bottom, #323232 0%, #3f3f3f 40%, #1c1c1c 150%),
@@ -81,11 +82,20 @@ span {
   color: aliceblue;
   margin-left: auto;
 }
+
+.nav-link:hover {
+  transition: all 0.2s ease;
+  text-shadow: 0 0 2px aliceblue;
+}
+
 .router-link-exact-active {
+  color: #ff3737 !important;
   transition: all 0.2s ease;
   text-shadow: 0 0 1px #ff0000;
 }
+
 .router-link-exact-active:hover {
   text-shadow: 0 0 5px #ff0000;
 }
+
 </style>
