@@ -4,8 +4,9 @@
       <div class="one">
         <img
           :src="`http://img.omdbapi.com/?apikey=1feca478&i=${info.imdbID}`"
-          class="card-img-top"
           :alt="info.Title"
+          class="card-img-top"
+          loading="lazy"
         />
         <div class="card-body">
           <h4 class="card-title">
