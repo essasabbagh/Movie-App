@@ -3,18 +3,14 @@
     <div class="card mb-3">
       <div class="one">
         <img
-          :src="`http://img.omdbapi.com/?apikey=1feca478&i=${info.imdbID}`"
-          :alt="info.Title"
-          class="card-img-top"
-          loading="lazy"
-          v-if="info.Poster != 'N/A'"
-        />
-        <img
-          src="../assets/noposter.jpg"
+          :src="
+            info.Poster == 'N/A'
+              ? require('../assets/noposter.jpg')
+              : `http://img.omdbapi.com/?apikey=1feca478&i=${info.imdbID}`
+          "
           alt="noposter"
           class="card-img-top"
           loading="lazy"
-          v-else
         />
         <div class="card-body">
           <h4 class="card-title">

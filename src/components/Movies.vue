@@ -3,15 +3,11 @@
     <div class="card movie-card">
       <div class="bg-image">
         <img
-          v-if="movieInfo.Poster !== 'N/A'"
-          :src="movieInfo.Poster"
-          :alt="movieInfo.Title"
-          class="img-fluid image"
-          loading="lazy"
-        />
-        <img
-          v-else
-          src="../assets/noposter.jpg"
+          :src="
+            movieInfo.Poster == 'N/A'
+              ? require('../assets/noposter.jpg')
+              : movieInfo.Poster
+          "
           class="img-fluid image w-100"
           loading="lazy"
         />
@@ -66,11 +62,6 @@ export default {
       });
   },
   computed: {
-    img() {
-      return this.movieInfo.Poster == "N/A"
-        ? `../assets/noposter.jpg`
-        : this.movieInfo.Poster;
-    },
     isFavorite() {
       const arr = JSON.parse(localStorage.getItem("movie")) || [];
       return arr.find((e) => e.imdbID == this.details.imdbID);

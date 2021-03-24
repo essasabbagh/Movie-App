@@ -29,7 +29,6 @@ export default {
 
 <style>
 #nav {
-
   font-size: larger;
   width: 100%;
   box-shadow: 2px 2px 10px rgba(34, 34, 34, 0.5);
