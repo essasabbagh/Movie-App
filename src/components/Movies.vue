@@ -2,7 +2,19 @@
   <div id="movies">
     <div class="card movie-card">
       <div class="bg-image">
-        <img :src="img" class="img-fluid image" loading="lazy" />
+        <img
+          v-if="movieInfo.Poster !== 'N/A'"
+          :src="movieInfo.Poster"
+          :alt="movieInfo.Title"
+          class="img-fluid image"
+          loading="lazy"
+        />
+        <img
+          v-else
+          src="../assets/noposter.jpg"
+          class="img-fluid image w-100"
+          loading="lazy"
+        />
       </div>
       <div class="cardBody">
         <div class="cardFooter">

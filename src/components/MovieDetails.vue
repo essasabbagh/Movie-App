@@ -7,6 +7,14 @@
           :alt="info.Title"
           class="card-img-top"
           loading="lazy"
+          v-if="info.Poster != 'N/A'"
+        />
+        <img
+          src="../assets/noposter.jpg"
+          alt="noposter"
+          class="card-img-top"
+          loading="lazy"
+          v-else
         />
         <div class="card-body">
           <h4 class="card-title">
@@ -42,20 +50,20 @@ import axios from "axios";
 export default {
   data() {
     return {
-      info: {}
+      info: {},
     };
   },
   created() {
     axios
       .get(`http://www.omdbapi.com/?apikey=1feca478&i=${this.$route.params.id}`)
-      .then(movie_info_response => {
+      .then((movie_info_response) => {
         this.info = movie_info_response.data;
         console.log("info", this.info);
       })
-      .catch(error => {
+      .catch((error) => {
         console.log(error);
       });
-  }
+  },
 };
 </script>
 
@@ -74,7 +82,7 @@ export default {
   margin: auto;
 }
 .card-img-top {
-  width: 500px;
+  width: 300px;
 }
 .card-title {
   font-size: 50px;
